@@ -3,6 +3,8 @@
     Created on : May 11, 2024, 4:34:34 PM
     Author     : Mr.Khanh
 --%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,21 +21,24 @@
         .container-fluid {
             background-color: black
         }
-
+        .navbar-brand {
+            color: #1657bf !important;
+        }
         .navbar-nav .nav-link:hover {
-            color: #007bff;
+            color: #007bff!important;;
             /* Change text color on hover */
         }
 
         body {
-            color: #fff;
+            
             font-family: 'Open Sans', sans-serif;
             font-size: 16px;
             font-weight: normal;
             overflow-x: hidden;
             background: #000;
         }
-      
+ 
+
 
         .fontColor {
             color: #1657bf;
@@ -46,7 +51,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar  navbar-expand-lg bg-body-tertiary-dark ">
         <div class="container-fluid">
             <a class="navbar-brand fontColor "  href="#">The Epic Game Shop</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -63,7 +68,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link fontColor dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Dropdown
+                           CONTACT
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Action</a></li>
@@ -80,7 +85,7 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-primary" type="submit">Search</button>
                 </form>
             </div>
         </div>
