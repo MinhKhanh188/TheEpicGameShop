@@ -13,87 +13,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- Link to Bootstrap CSS from node_modules -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
     <style>
-        .container-fluid {
-            background-color: black
-        }
-        .navbar-brand {
-            color: #1657bf !important;
-        }
-        .navbar-nav .nav-link:hover {
-            color: #007bff!important;;
-            /* Change text color on hover */
-        }
-
-        body {
+        ul {
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
             
-            font-family: 'Open Sans', sans-serif;
-            font-size: 16px;
-            font-weight: normal;
-            overflow-x: hidden;
-            background: #000;
+             position: fixed; /* Set navbar position to fixed */
+            top: 0; /* Stick the navbar to the top of the page */
+            z-index: 1000;
         }
- 
 
+      li {
+            float: left;
+        }
 
-        .fontColor {
-            color: #1657bf;
-            font-size: 25px;
+        li a {
+            display: block;
+            color: rgb(34, 122, 217);
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
             font-weight: bold;
+            font-size: 25px; 
         }
 
+        /* Change the link color to #111 (black) on hover */
+        li:hover a {
+            background-color: #e8e8e8;
+        }
+
+        .avatar {
+            float: right;
+            margin-top: 8px;
+            margin-right: 16px;
+            border-radius: 50%; /* Make the box circular */
+            overflow: hidden; /* Hide overflow content */
+            transition: background-color 0.3s ease; /* Add transition for smooth effect */
+        }
+
+        .avatar:hover {
+            background-color: white; /* Change background color to white on hover */
+        }
+
+        .avatar img {
+            width: 40px;
+            height: 40px;
+        }
     </style>
 </head>
 
 <body>
-
-    <nav class="navbar  navbar-expand-lg bg-body-tertiary-dark ">
-        <div class="container-fluid">
-            <a class="navbar-brand fontColor "  href="#">The Epic Game Shop</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link  fontColor " aria-current="page" href="#">HOME</a>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link fontColor dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                           CONTACT
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Optionally, you can include Bootstrap JavaScript components -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-
+    <ul>
+        <li><a href="HomePage.jsp" class="active">Home</a></li>
+        <li><a href="#"class="active">News</a></li>
+        <li><a href="#"class="active">Contact</a></li>
+        <li><a href="#"class="active">About</a></li>
+        <li class="avatar">
+            <a href="Login.jsp">
+                <img src="img/avatar.png" alt="Avatar">
+            </a>
+        </li>
+    </ul>
 </body>
 
 </html>

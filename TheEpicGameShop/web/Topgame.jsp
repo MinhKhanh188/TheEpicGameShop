@@ -62,24 +62,24 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="https://www.hooniganracing.com/cdn/shop/files/KB_Garage_Can-Am_X3_2020_900x.jpg?v=1613726468" class="d-block w-100" alt="...">
+            <img src="img/Cyberpunk2077.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>First slide label</h5>
-              <p>Some representative placeholder content for the first slide.</p>
+              
+              
             </div>
           </div>
           <div class="carousel-item">
-            <img src="https://www.hooniganracing.com/cdn/shop/files/KB_Garage_RX43_900x.jpg?v=1613722501" class="d-block w-100" alt="...">
+              <img src="img/marvelspiderman2.jpeg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>Second slide label</h5>
-              <p>Some representative placeholder content for the second slide.</p>
+             
+              
             </div>
           </div>
           <div class="carousel-item">
-            <img src="https://www.hooniganracing.com/cdn/shop/files/KB_Garage_Raptor_Daily_900x.jpg?v=1613722501" class="d-block w-100" alt="...">
+              <img src="img/godofwarvalhalla.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
-              <h5>Third slide label</h5>
-              <p>Some representative placeholder content for the third slide.</p>
+            
+              
             </div>
           </div>
         </div>
