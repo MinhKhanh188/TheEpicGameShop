@@ -12,16 +12,23 @@ CREATE TABLE Users (
     UserPurse DECIMAL(10, 2)
 );
 
+-- Genres Table
+CREATE TABLE Genres (
+    GenreID INT PRIMARY KEY IDENTITY,
+    GenreName NVARCHAR(200) UNIQUE
+);
 
 -- Games Table
 CREATE TABLE Games (
     GameID INT PRIMARY KEY IDENTITY,
     Title NVARCHAR(400),
     Description NVARCHAR(MAX),
-    Genre NVARCHAR(50),
+    GenreID INT,
+	ImageLink NVARCHAR(MAX),
     Developer NVARCHAR(100),
     ReleaseDate DATE,
-    Price DECIMAL(10, 2)
+    Price DECIMAL(10, 2),
+	FOREIGN KEY (GenreID) REFERENCES Genres(GenreID)
 );
 
 
@@ -44,10 +51,16 @@ CREATE TABLE UserTransactions (
     FOREIGN KEY (UserID) REFERENCES Users(UserID)
 );
 
+-- User Transactions Details Table (for storing individual bought games per transaction)
+CREATE TABLE UserTransactionDetails (
+    TransactionDetailID INT PRIMARY KEY IDENTITY,
+    TransactionID INT,
+    GameID INT,
+    FOREIGN KEY (TransactionID) REFERENCES UserTransactions(TransactionID),
+    FOREIGN KEY (GameID) REFERENCES Games(GameID)
+);
 
 
-select * from Users
 
-SELECT * FROM Users WHERE Username = ? AND Password = ?
 
 
