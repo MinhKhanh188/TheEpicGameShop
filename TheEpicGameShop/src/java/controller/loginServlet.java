@@ -6,13 +6,10 @@ package controller;
 
 import dal.UserDBConnect;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import model.Users;
 
 /**
@@ -50,18 +47,20 @@ public class loginServlet extends HttpServlet {
         Users user = userDB.login(username, password);
 
         if (user != null) {
+            // Store the logged-in username in the session
+            request.getSession().setAttribute("loggedInUsername", username);
 
             // Determine the appropriate redirection based on user type
             String redirectPath;
             switch (user.getRole()) {
                 case 1:
-                    redirectPath = "HomePage.jsp";
+                    redirectPath = "GetListOfGamesServlet";
                     break;
                 case 2:
-                    redirectPath = "HomePage.jsp";
+                    redirectPath = "GetListOfGamesServlet";
                     break;
                 default:
-                    redirectPath = "HomePage.jsp";
+                    redirectPath = "Help.jsp";
                     break;
             }
 
@@ -71,11 +70,9 @@ public class loginServlet extends HttpServlet {
         } else {
             // Authentication failed, log the failure and redirect to an error page
             System.out.println("Login failed for username: " + username);
-// Redirect to the login page with an error message as a query parameter
+            // Redirect to the login page with an error message as a query parameter
             response.sendRedirect("LoginFailed.html");
-
         }
-
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -95,15 +95,7 @@
 
     <!-- Optionally, you can include Bootstrap JavaScript components -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var myCarousel = document.getElementById('carouselExampleCaptions');
-            var carousel = new bootstrap.Carousel(myCarousel, {
-                interval: 4000, // Change slides every 4 seconds
-                wrap: true
-            });
-        });
-    </script>
+  
 </body>
 
 </html>
