@@ -135,7 +135,7 @@
             .container{
                 padding-top: 30px;
             }
-            
+
             .avatar {
                 float: right;
                 margin-top: 8px;
@@ -155,7 +155,7 @@
                 border-radius: 50%; /* Ensure the image is rounded */
             }
 
-     
+
 
             /* Dropdown button */
             .dropbtn {
@@ -194,12 +194,12 @@
             /* Show the dropdown menu on hover */
             .avatar:hover .dropdown-content {
                 display: block;
-            }            
+            }
         </style>
     </head>
 
     <body>
-                <ul>
+        <ul>
             <li><a href="GetListOfGamesServlet" class="avatar">
                     <img src="img/Fauget.png" alt="alt" />
                 </a></li>
@@ -210,13 +210,14 @@
                     <c:when test="${not empty sessionScope.loggedInUsername}">
                     <li class="avatar">
                         <div class="dropdown">
-                            <a href="#" class="dropbtn">
+                            <div  class="dropbtn">
                                 <%-- Display logged-in user's name next to the avatar --%>
                                 <%= session.getAttribute("loggedInUsername") %>
                                 <img src="img/avatar.png" alt="Avatar">
-                            </a>
+                            </div>
                             <div class="dropdown-content">
-                                <a href="Profile.jsp">Profile</a>
+                                <a href="UserViewProfileServlet">Profile</a>
+                                <a href="Libraly.jsp">Libraly</a>
                                 <a href="LogoutServlet">Logout</a>
                             </div>
                         </div>

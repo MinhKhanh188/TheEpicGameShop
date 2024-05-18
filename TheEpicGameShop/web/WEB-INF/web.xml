@@ -24,6 +24,18 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserViewProfileServlet</servlet-name>
+        <servlet-class>controller.UserViewProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserLibraryServlet</servlet-name>
+        <servlet-class>controller.UserLibraryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAllUserLibraryServlet</servlet-name>
+        <servlet-class>controller.ViewAllUserLibraryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -48,9 +60,19 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserViewProfileServlet</servlet-name>
+        <url-pattern>/UserViewProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserLibraryServlet</servlet-name>
+        <url-pattern>/UserLibraryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllUserLibraryServlet</servlet-name>
+        <url-pattern>/ViewAllUserLibraryServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>

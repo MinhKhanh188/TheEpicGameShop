@@ -38,4 +38,31 @@ public class UserDBConnect extends DBConnect {
         System.out.println("Login result: " + user); // Add this line
         return user;
     }
+
+    public Users getUserByID(int userID) {
+        Users user = null;
+        String sql = "SELECT * FROM Users WHERE UserID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, userID);
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                user = new Users();
+                user.setUserID(resultSet.getInt("UserID"));
+                user.setUsername(resultSet.getString("Username"));
+                user.setPassword(resultSet.getString("Password"));
+                user.setRole(resultSet.getInt("Role"));
+                user.setDateCreated(resultSet.getString("DateCreated"));
+                user.setUserPurse(resultSet.getDouble("UserPurse"));
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
 }

@@ -68,6 +68,10 @@ CREATE TABLE UserTransactionDetails (
 
 
 
+SELECT Games.*
+FROM Games
+INNER JOIN UserGamesLibrary ON Games.GameID = UserGamesLibrary.GameID
+WHERE UserGamesLibrary.UserID = 1;
 
 
 
