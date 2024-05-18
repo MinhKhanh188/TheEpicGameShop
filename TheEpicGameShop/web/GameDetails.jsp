@@ -64,7 +64,6 @@
                 margin-top: 8px;
                 margin-right: 16px;
                 border-radius: 50%;
-                overflow: hidden;
                 transition: background-color 0.3s ease;
             }
 
@@ -136,11 +135,71 @@
             .container{
                 padding-top: 30px;
             }
+            
+            .avatar {
+                float: right;
+                margin-top: 8px;
+                margin-right: 50px;
+                border-radius: 50%; /* Make the box circular */
+                transition: background-color 0.3s ease, transform 0.3s ease; /* Add transition for smooth effect */
+            }
+
+            .avatar:hover {
+                background-color: #e8e8e8; /* Change background color on hover */
+                transform: scale(1.05); /* Slightly enlarge the avatar on hover */
+            }
+
+            .avatar img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%; /* Ensure the image is rounded */
+            }
+
+     
+
+            /* Dropdown button */
+            .dropbtn {
+                color: rgb(34, 122, 217);
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-weight: bold;
+                font-size: 25px;
+            }
+
+            /* Dropdown content (hidden by default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                text-align: left;
+            }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {
+                background-color: #f1f1f1;
+            }
+
+            /* Show the dropdown menu on hover */
+            .avatar:hover .dropdown-content {
+                display: block;
+            }            
         </style>
     </head>
 
     <body>
-<ul>
+                <ul>
             <li><a href="GetListOfGamesServlet" class="avatar">
                     <img src="img/Fauget.png" alt="alt" />
                 </a></li>
