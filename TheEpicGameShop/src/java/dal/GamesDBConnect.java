@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import model.Games;
 import model.Genres;
 
@@ -78,6 +79,45 @@ public class GamesDBConnect extends DBConnect {
             ex.printStackTrace();
         }
         return checkGameID;
+    }
+
+    public List<Games> getGamesByIds(List<Integer> gameIds) {
+        List<Games> list = new ArrayList<>();
+        if (gameIds == null || gameIds.isEmpty()) {
+            return list;
+        }
+
+        // Create a dynamic SQL query with placeholders
+        String placeholders = gameIds.stream()
+                .map(id -> "?")
+                .collect(Collectors.joining(","));
+        String sql = "SELECT * FROM Games WHERE GameID IN (" + placeholders + ")";
+
+        try ( PreparedStatement stmt = connection.prepareStatement(sql)) {
+            // Set the parameters for the prepared statement
+            for (int i = 0; i < gameIds.size(); i++) {
+                stmt.setInt(i + 1, gameIds.get(i));
+            }
+            try ( ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Games game = new Games();
+                    game.setGameID(rs.getInt("GameID"));
+                    game.setTitle(rs.getString("Title"));
+                    game.setDescription(rs.getString("Description"));
+                    game.setGenreID(rs.getInt("GenreID"));
+                    game.setImageLink(rs.getString("ImageLink"));
+                    game.setDeveloper(rs.getString("Developer"));
+                    game.setReleaseDate(rs.getString("ReleaseDate"));
+                    game.setPrice(rs.getDouble("Price"));
+
+                    // Add game to the list
+                    list.add(game);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return list;
     }
 
     public static void main(String[] args) {
