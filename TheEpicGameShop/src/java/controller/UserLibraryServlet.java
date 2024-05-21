@@ -1,6 +1,5 @@
 package controller;
 
-import dal.UserDBConnect;
 import dal.UserGamesLibraryDBConnect;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
@@ -10,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Games;
-import model.Users;
 
 /**
  * Servlet to handle displaying the user's game library

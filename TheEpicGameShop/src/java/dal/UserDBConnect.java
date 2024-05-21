@@ -64,5 +64,23 @@ public class UserDBConnect extends DBConnect {
         }
         return user;
     }
+    
+    public void updateUserPurse(int userID, double newPurseBalance) {
+        String sql = "UPDATE Users SET UserPurse = ? WHERE UserID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setDouble(1, newPurseBalance);
+            statement.setInt(2, userID);
+            int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("User purse balance updated successfully.");
+            } else {
+                System.out.println("Failed to update user purse balance.");
+            }
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 }

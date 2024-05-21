@@ -8,6 +8,7 @@ import java.util.List;
 import model.Games;
 
 public class UserGamesLibraryDBConnect extends DBConnect {
+
     private int userID;
 
     public UserGamesLibraryDBConnect(int userID) {
@@ -44,4 +45,21 @@ public class UserGamesLibraryDBConnect extends DBConnect {
         }
         return userLibrary;
     }
+
+    // Method to add multiple games to the user's library
+    public void addGamesToUserLibrary(List<Integer> gameIds) throws SQLException {
+        String sql = "INSERT INTO UserGamesLibrary (UserID, GameID) VALUES (?, ?)";
+        try ( PreparedStatement stmt = connection.prepareStatement(sql)) {
+            for (int gameId : gameIds) {
+                stmt.setInt(1, userID);
+                stmt.setInt(2, gameId);
+                stmt.addBatch();
+            }
+            stmt.executeBatch();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // Rethrow the exception after logging it
+        }
+    }
+
 }

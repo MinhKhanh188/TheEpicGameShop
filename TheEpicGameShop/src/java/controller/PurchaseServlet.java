@@ -1,81 +1,90 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
-
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import dal.GamesDBConnect;
+import dal.UserDBConnect;
+import jakarta.servlet.http.HttpSession;
+import model.Games;
+import model.Users;
 
-/**
- *
- * @author Mr.Khanh
- */
 public class PurchaseServlet extends HttpServlet {
-   
-    /** 
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PurchaseServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PurchaseServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    } 
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
-     * Handles the HTTP <code>GET</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // Retrieve game IDs from the request
+        String gameIdsStr = request.getParameter("gameIds");
+
+        if (gameIdsStr == null || gameIdsStr.isEmpty()) {
+            response.sendRedirect("Cart.jsp");
+            return;
+        }
+
+        // Split the string into individual IDs
+        String[] gameIdTokens = gameIdsStr.split(",");
+
+        // Convert the game IDs from String to Integer
+        List<Integer> gameIds = new ArrayList<>();
+        for (String token : gameIdTokens) {
+            try {
+                gameIds.add(Integer.parseInt(token.trim()));
+            } catch (NumberFormatException e) {
+                // Handle invalid input if needed
+                e.printStackTrace();
+            }
+        }
+
+        // Use the GamesDBConnect to retrieve game details
+        GamesDBConnect gamesDBConnect = new GamesDBConnect();
+        List<Games> gamesList = gamesDBConnect.getGamesByIds(gameIds);
+
+        // Set the retrieved games list as a request attribute to be accessed by the payment page
+        request.setAttribute("gamesList", gamesList);
+        request.setAttribute("gameIds", gameIdsStr);
+
+        HttpSession session = request.getSession();
+        Users currentUser = (Users) session.getAttribute("loggedUser");
+
+        if (currentUser == null) {
+            response.sendRedirect("Login.jsp");
+            return;
+        }
+
+        UserDBConnect userDB = new UserDBConnect();
+        Users user = userDB.getUserByID(currentUser.getUserID());
+
+        if (user == null) {
+            response.sendRedirect("error.jsp");
+            return;
+        }
+
+        double userPurse = user.getUserPurse();
+        // Set the userPurse as a request attribute to be accessed by the payment page
+        request.setAttribute("userPurse", userPurse);
+
+        request.getRequestDispatcher("Payment.jsp").forward(request, response);
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-        processRequest(request, response);
-    } 
-
-    /** 
-     * Handles the HTTP <code>POST</code> method.
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /** 
-     * Returns a short description of the servlet.
-     * @return a String containing servlet description
-     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
     @Override
     public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+        return "PurchaseServlet handles game purchases";
+    }
 }

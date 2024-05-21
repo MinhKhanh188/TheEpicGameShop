@@ -66,6 +66,8 @@ CREATE TABLE UserTransactionDetails (
 
 
 
+select * from Users
+
 
 
 SELECT Games.*
@@ -78,11 +80,12 @@ WHERE UserGamesLibrary.UserID = 1;
 select * from Games 
 where GameID = ?
 
+select * from UserGamesLibrary
 
 
+SELECT * FROM Games WHERE GameID IN (56, 57, 58,);
 
-
-
+SELECT G.*, Genres.GenreName FROM Games AS G INNER JOIN Genres ON G.GenreID = Genres.GenreID WHERE G.GameID IN (56,57,58)
 
 
 

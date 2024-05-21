@@ -9,13 +9,13 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>User Library</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <head>
+        <meta charset="UTF-8">
+        <title>User Library</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    
-    <style>
+
+        <style>
             body {
                 font-family: Arial, sans-serif;
                 background-color: #222;
@@ -183,11 +183,15 @@
             .avatar:hover .dropdown-content {
                 display: block;
             }
+            .libraryH1{
+                padding-bottom: 50px;
+            }
         </style>
-</head>
-<body>
-    <h1>User Library</h1>
-    <div class="container mt-5">
+    </head>
+    <body>
+
+        <div class="container mt-5">
+            <h1 class="libraryH1">Library</h1>
             <div class="row">
                 <c:forEach var="game" items="${userLibrary}">
                     <div class="col-md-4 col-sm-6 mb-4">
@@ -205,5 +209,5 @@
                 </c:forEach>
             </div>
         </div>
-</body>
+    </body>
 </html>
