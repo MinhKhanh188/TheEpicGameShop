@@ -51,7 +51,7 @@ public class loginServlet extends HttpServlet {
             String redirectPath;
             switch (user.getRole()) {
                 case 1:
-                    redirectPath = "GetListOfGamesServlet";
+                    redirectPath = "ProductManagerSiteServlet";
                     break;
                 case 2:
                     redirectPath = "GetListOfGamesServlet";

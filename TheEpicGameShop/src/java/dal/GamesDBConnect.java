@@ -120,6 +120,71 @@ public class GamesDBConnect extends DBConnect {
         return list;
     }
 
+    /**
+     * Inserts a new game into the database.
+     *
+     * @param game the game object to insert
+     */
+    public void insertGame(Games game) {
+        String sql = "INSERT INTO Games (Title, Description, GenreID, ImageLink, Developer, ReleaseDate, Price) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+        try ( PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, game.getTitle());
+            stmt.setString(2, game.getDescription());
+            stmt.setInt(3, game.getGenreID());
+            stmt.setString(4, game.getImageLink());
+            stmt.setString(5, game.getDeveloper());
+            stmt.setString(6, game.getReleaseDate());
+            stmt.setDouble(7, game.getPrice());
+
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Deletes a game from the database by its GameID.
+     *
+     * @param gameID the ID of the game to delete
+     */
+    public void deleteGame(int gameID) {
+        String sql = "DELETE FROM Games WHERE GameID = ?";
+
+        try ( PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setInt(1, gameID);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    
+     /**
+     * Updates an existing game in the database.
+     * @param game the game object to update
+     */
+   public boolean updateGame(Games game) {
+        String sql = "UPDATE Games SET Title = ?, Description = ?, GenreID = ?, ImageLink = ?, Developer = ?, ReleaseDate = ?, Price = ? WHERE GameID = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, game.getTitle());
+            stmt.setString(2, game.getDescription());
+            stmt.setInt(3, game.getGenreID());
+            stmt.setString(4, game.getImageLink());
+            stmt.setString(5, game.getDeveloper());
+            stmt.setString(6, game.getReleaseDate());
+            stmt.setDouble(7, game.getPrice());
+            stmt.setInt(8, game.getGameID());
+
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
+    
     public static void main(String[] args) {
         // Create an instance of GamesDBConnect
         GamesDBConnect gamesDBConnect = new GamesDBConnect();

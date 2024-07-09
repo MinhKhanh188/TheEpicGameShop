@@ -7,12 +7,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import dal.UserDBConnect;
 import dal.UserGamesLibraryDBConnect;
+import dal.UserTransactionsDBConnect;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import model.UserTransactions;
 
 public class FinishPayment extends HttpServlet {
 
@@ -37,6 +41,20 @@ public class FinishPayment extends HttpServlet {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
         userGamesLibraryDB.addGamesToUserLibrary(gameIdsList);
+
+        // Get the current date and time
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String transactionDate = currentDateTime.format(formatter);
+
+        // Prepare a list of UserTransactions objects for batch insertion
+        List<UserTransactions> transactionsList = gameIdsList.stream().map(gameID -> {
+            return new UserTransactions(0, userID, gameID, remainingBalance, transactionDate, "Credit Card", null, null);
+        }).collect(Collectors.toList());
+
+        // Insert transaction history for each game in batch
+        UserTransactionsDBConnect transactionsDB = new UserTransactionsDBConnect();
+        transactionsDB.insertTransactionHistories(transactionsList);
 
         request.getSession().removeAttribute("cart");
         request.getSession().removeAttribute("totalPrice");

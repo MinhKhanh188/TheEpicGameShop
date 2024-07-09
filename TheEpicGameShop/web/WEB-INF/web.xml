@@ -56,6 +56,30 @@
         <servlet-name>RemoveFromCartServlet</servlet-name>
         <servlet-class>controller.RemoveFromCartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductManagerSiteServlet</servlet-name>
+        <servlet-class>controller.ProductManagerSiteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateServlet</servlet-name>
+        <servlet-class>controller.UpdateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductSevlet</servlet-name>
+        <servlet-class>controller.AddProductSevlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertGameServlet</servlet-name>
+        <servlet-class>controller.InsertGameServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>controller.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ExecuteUpdateServlet</servlet-name>
+        <servlet-class>controller.ExecuteUpdateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -111,6 +135,30 @@
     <servlet-mapping>
         <servlet-name>RemoveFromCartServlet</servlet-name>
         <url-pattern>/RemoveFromCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductManagerSiteServlet</servlet-name>
+        <url-pattern>/ProductManagerSiteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateServlet</servlet-name>
+        <url-pattern>/UpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductSevlet</servlet-name>
+        <url-pattern>/AddProductSevlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertGameServlet</servlet-name>
+        <url-pattern>/InsertGameServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/DeleteServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ExecuteUpdateServlet</servlet-name>
+        <url-pattern>/ExecuteUpdateServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

@@ -5,6 +5,10 @@ drop database epicGameShop1
 
 use epicGameShop1
 
+DROP TABLE UserTransactionDetails
+DROP TABLE UserTransactions
+
+
 
 -- User Table
 CREATE TABLE Users (
@@ -49,24 +53,19 @@ CREATE TABLE UserGamesLibrary (
 CREATE TABLE UserTransactions (
     TransactionID INT PRIMARY KEY IDENTITY,
     UserID INT,
-    BoughtedGames NVARCHAR(MAX),
+    GameID INT,
+	Expenditure DECIMAL(10, 2),
     TransactionDate NVARCHAR(50),
     PaymentMethod NVARCHAR(50),
-    FOREIGN KEY (UserID) REFERENCES Users(UserID)
-);
-
--- User Transactions Details Table (for storing individual bought games per transaction)
-CREATE TABLE UserTransactionDetails (
-    TransactionDetailID INT PRIMARY KEY IDENTITY,
-    TransactionID INT,
-    GameID INT,
-    FOREIGN KEY (TransactionID) REFERENCES UserTransactions(TransactionID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (GameID) REFERENCES Games(GameID)
 );
 
 
 
-select * from Users
+
+
+select * from UserTransactions
 
 
 
