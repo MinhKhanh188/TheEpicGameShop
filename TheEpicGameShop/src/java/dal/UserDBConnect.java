@@ -83,4 +83,25 @@ public class UserDBConnect extends DBConnect {
         }
     }
 
+    public static void main(String[] args) {
+        // Initialize the database connection
+        UserDBConnect userDB = new UserDBConnect();
+
+        // Test parameters
+        int userID = 1; // Replace with a valid user ID from your database
+        double newPurseBalance = 500.75;
+
+        // Call the updateUserPurse method
+        userDB.updateUserPurse(userID, newPurseBalance);
+
+        // Optional: Retrieve and print user details to verify the update
+        Users user = userDB.getUserByID(userID);
+        if (user != null) {
+            System.out.println("User ID: " + user.getUserID());
+            System.out.println("Username: " + user.getUsername());
+            System.out.println("Updated Purse Balance: " + user.getUserPurse());
+        } else {
+            System.out.println("User not found.");
+        }
+    }
 }

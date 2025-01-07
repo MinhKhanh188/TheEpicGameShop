@@ -19,6 +19,44 @@ import model.Genres;
  */
 public class GamesDBConnect extends DBConnect {
 
+     public List<Games> getGamesSortedByPriceRange(double minPrice, double maxPrice) {
+        List<Games> list = new ArrayList<>();
+        String sql = "SELECT G.*, Genres.GenreName " +
+                     "FROM Games AS G " +
+                     "INNER JOIN Genres ON G.GenreID = Genres.GenreID " +
+                     "WHERE G.Price BETWEEN ? AND ? " +
+                     "ORDER BY G.Price ASC";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setDouble(1, minPrice);
+            stmt.setDouble(2, maxPrice);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Games game = new Games();
+                    game.setGameID(rs.getInt("GameID"));
+                    game.setTitle(rs.getString("Title"));
+                    game.setDescription(rs.getString("Description"));
+                    game.setGenreID(rs.getInt("GenreID"));
+                    game.setImageLink(rs.getString("ImageLink"));
+                    game.setDeveloper(rs.getString("Developer"));
+                    game.setReleaseDate(rs.getString("ReleaseDate"));
+                    game.setPrice(rs.getDouble("Price"));
+                    
+                    // Set genre details
+                    Genres genre = new Genres();
+                    genre.setGenreName(rs.getString("GenreName"));
+                    game.setGenres(genre);
+                    
+                    list.add(game);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return list;
+    }
+    
     public List<Games> getAll() {
         List<Games> list = new ArrayList<>();
         String sql = "SELECT G.*, Genres.GenreName\n"
@@ -185,12 +223,47 @@ public class GamesDBConnect extends DBConnect {
         }
     }
     
+     public List<Games> searchGamesByTitle(String searchQuery) {
+        List<Games> list = new ArrayList<>();
+        String sql = "SELECT G.*, Genres.GenreName "
+                   + "FROM Games AS G "
+                   + "INNER JOIN Genres ON G.GenreID = Genres.GenreID "
+                   + "WHERE G.Title LIKE ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, "%" + searchQuery + "%");
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Games game = new Games();
+                    game.setGameID(rs.getInt("GameID"));
+                    game.setTitle(rs.getString("Title"));
+                    game.setDescription(rs.getString("Description"));
+                    game.setGenreID(rs.getInt("GenreID"));
+                    game.setImageLink(rs.getString("ImageLink"));
+                    game.setDeveloper(rs.getString("Developer"));
+                    game.setReleaseDate(rs.getString("ReleaseDate"));
+                    game.setPrice(rs.getDouble("Price"));
+                    // Set genre details
+                    Genres genre = new Genres();
+                    genre.setGenreName(rs.getString("GenreName"));
+                    game.setGenres(genre);
+                    // Add game to the list
+                    list.add(game);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return list;
+    }
+   
     public static void main(String[] args) {
         // Create an instance of GamesDBConnect
         GamesDBConnect gamesDBConnect = new GamesDBConnect();
 
         // Call the getAll method to retrieve all games
-        List<Games> gamesList = gamesDBConnect.getAll();
+        List<Games> gamesList = gamesDBConnect.getGamesSortedByPriceRange(0, 110);
 
         // Display the retrieved games
         for (Games game : gamesList) {

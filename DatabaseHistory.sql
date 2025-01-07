@@ -65,10 +65,6 @@ CREATE TABLE UserTransactions (
 
 
 
-select * from UserTransactions
-
-
-
 SELECT Games.*
 FROM Games
 INNER JOIN UserGamesLibrary ON Games.GameID = UserGamesLibrary.GameID

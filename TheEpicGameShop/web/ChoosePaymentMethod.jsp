@@ -1,15 +1,14 @@
 <%-- 
-    Document   : UserProfile
-    Created on : May 18, 2024, 8:07:45 PM
+    Document   : ChoosePaymentMethod
+    Created on : Jul 18, 2024, 10:21:58 AM
     Author     : Mr.Khanh
 --%>
 
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>User Profile</title>
+    <title>Choose Payment Method</title>
     <!-- Link to Bootstrap CSS from CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -24,7 +23,7 @@
             justify-content: center;
             align-items: center;
         }
-        .profile-container {
+        .payment-container {
             background-color: #333;
             padding: 40px;
             border-radius: 8px;
@@ -32,44 +31,39 @@
             width: 80%;
             max-width: 600px;
         }
-        .profile-container h1 {
+        .payment-container h1 {
             font-size: 2.5rem;
             margin-bottom: 30px;
             text-align: center;
         }
-        .profile-item {
+        .payment-option {
             margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
-        .profile-item strong {
-            display: inline-block;
-            width: 200px;
             font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <div class="profile-container">
-        <h1>User Profile</h1>
-        <c:if test="${not empty userProfile}">
-            <div class="profile-item">
-                <strong>UserID:</strong> <span>${userProfile.userID}</span>
+    <div class="payment-container">
+        <h1>Choose Payment Method</h1>
+        <form action="ProcessPaymentServlet" method="post">
+            <div class="payment-option">
+                <input type="radio" id="creditCard" name="paymentMethod" value="Credit Card" required>
+                <label for="creditCard">Credit Card</label>
             </div>
-            <div class="profile-item">
-                <strong>Username:</strong> <span>${userProfile.username}</span>
+            <div class="payment-option">
+                <input type="radio" id="paypal" name="paymentMethod" value="PayPal">
+                <label for="paypal">PayPal</label>
             </div>
-            <div class="profile-item">
-                <strong>Role:</strong> <span>${userProfile.role == 1 ? "Product Manager" : "User"}</span>
+            <div class="payment-option">
+                <input type="radio" id="bankTransfer" name="paymentMethod" value="Bank Transfer">
+                <label for="bankTransfer">Bank Transfer</label>
             </div>
-            <div class="profile-item">
-                <strong>Date Created:</strong> <span>${userProfile.dateCreated}</span>
+            <div class="mb-3">
+                <label for="amount" class="form-label">Amount to Add:</label>
+                <input type="number" step="0.01" id="amount" name="amount" class="form-control" required>
             </div>
-            <div class="profile-item">
-                <strong>User Purse:</strong> <span>${userProfile.userPurse}$</span>
-            </div>
-            <a href="ChoosePaymentMethodServlet">Insert Epic Game Coin</a>
-        </c:if>
-        
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 
     <!-- Link to Bootstrap JS from CDN -->

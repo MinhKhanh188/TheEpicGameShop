@@ -80,6 +80,26 @@
         <servlet-name>ExecuteUpdateServlet</servlet-name>
         <servlet-class>controller.ExecuteUpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SortedGamesByPriceRangeServlet</servlet-name>
+        <servlet-class>controller.SortedGamesByPriceRangeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchGamesServlet</servlet-name>
+        <servlet-class>controller.SearchGamesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateUserPurseServlet</servlet-name>
+        <servlet-class>controller.UpdateUserPurseServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChoosePaymentMethodServlet</servlet-name>
+        <servlet-class>controller.ChoosePaymentMethodServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessPaymentServlet</servlet-name>
+        <servlet-class>controller.ProcessPaymentServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginServlet</servlet-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -159,6 +179,26 @@
     <servlet-mapping>
         <servlet-name>ExecuteUpdateServlet</servlet-name>
         <url-pattern>/ExecuteUpdateServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortedGamesByPriceRangeServlet</servlet-name>
+        <url-pattern>/SortedGamesByPriceRangeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchGamesServlet</servlet-name>
+        <url-pattern>/SearchGamesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateUserPurseServlet</servlet-name>
+        <url-pattern>/UpdateUserPurseServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChoosePaymentMethodServlet</servlet-name>
+        <url-pattern>/ChoosePaymentMethodServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessPaymentServlet</servlet-name>
+        <url-pattern>/ProcessPaymentServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
